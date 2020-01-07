@@ -1,0 +1,5 @@
+include LICENSE
+include README.md
+recursive-include selia_managers/static *
+recursive-include selia_managers/templates *
+recursive-include docs *
