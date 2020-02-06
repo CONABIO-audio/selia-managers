@@ -21,7 +21,6 @@ setup(
     install_requires=[
         'irekua-dev-settings',
         'irekua-database',
-        'selia-forms',
         'selia-templates',
         'selia-registration'
     ],
