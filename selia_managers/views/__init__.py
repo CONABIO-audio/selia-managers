@@ -1,2 +1,2 @@
-from .collections import collections
+from .collections import collections, listManagerCollectionsView
 from .management import management

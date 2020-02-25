@@ -12,6 +12,11 @@
 {% endblock toolbar-items %}
 
 {% block main-content %}
+  {% if cond %} 
+    <p>{{dummy_text}}</p>
+  {% else %}
+    <p>Estoy en else</p>
+  {% endif%}
   <div class="mx-auto container-fluid" style="width: 96%; overflow: auto; background-color: white; display: block; position: relative; margin: 1.2rem;">
       <div class="row">
         <div class="col-12 m-2">
@@ -97,10 +102,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="" action="#" method="post">
-          {% csrf_token %}
-          {% crispy collection_form %}
-        </form>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

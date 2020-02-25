@@ -1,0 +1,30 @@
+:root {
+  --managers-color-bg: #404040;
+  --managers-color-text: #BEBEBE;
+}
+
+/* User bar */
+
+.managers-bar {
+  background-color: var(--managers-color-bg);
+  border-width: 0;
+  border-color: var(--managers-color-bg);
+}
+
+.managers-bar .nav-tabs {
+  border-color: var(--managers-color-bg);
+}
+
+.managers-bar .navbar-brand {
+  color: var(--managers-color-text);
+  background-color: var(--managers-color-bg) !important;
+}
+
+.managers-bar .nav-link {
+  color: var(--managers-color-text);
+}
+
+.managers-bar .nav-link:hover {
+  border-color: var(--managers-color-text);
+  border-bottom-width: 0px;
+}
