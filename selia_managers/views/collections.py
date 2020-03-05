@@ -40,23 +40,23 @@ class listManagerCollectionsView(SeliaListView):
 
   def get_initial_queryset(self):
     user = self.request.user
-    print(user)
+    # print(user)
     print('****USER****')
-    user = User.objects.first()
+    # user = User.objects.first()
     print(user)
     queryset = user.managed_collections #Collection.objects.all()
 
     if user.is_special:
       return queryset
 
-    collection_user_query = Q(collectionuser__user=user)
-    collection_admin_query = Q(administrators=user)
-    collection_type_admin = Q(collection_type__administrators=user)
+    #collection_user_query = Q(collectionuser__user=user)
+    #collection_admin_query = Q(administrators=user)
+    #collection_type_admin = Q(collection_type__administrators=user)
 
-    queryset = queryset.filter(
-      collection_user_query |
-      collection_admin_query |
-      collection_type_admin).distinct()
+    #queryset = queryset.filter(
+    #  collection_user_query |
+    #  collection_admin_query |
+    #  collection_type_admin).distinct()
 
     return queryset
 

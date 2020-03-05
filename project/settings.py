@@ -5,6 +5,7 @@ from selia_templates.settings import *
 from selia_managers.settings import *
 from irekua_database.settings import *
 from irekua_rest_api.settings import *
+from selia_registration.settings import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
@@ -16,6 +17,7 @@ INSTALLED_APPS = (
     SELIA_TEMPLATES_APPS +
     IREKUA_BASE_APPS +
     IREKUA_DATABASE_APPS +
+    SELIA_REGISTRATION_APPS +
     IREKUA_REST_API_APPS
 )
 #INSTALLED_APPS.append('crispy_forms')

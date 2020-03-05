@@ -9,4 +9,8 @@ urlpatterns = [
         'collections',
         views.listManagerCollectionsView.as_view(),
         name='collections'),
+    path(
+        'collection/create/2/',
+        views.listManagerCollectionsView.as_view(),
+        name='create_collection'),
 ]
