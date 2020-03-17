@@ -12,21 +12,24 @@
   <div class="mx-auto container-fluid" style="width: 96%; overflow: auto; background-color: white; display: block; position: relative; margin: 1.2rem;">
     <div class="container-">
       <div class="row">
-        <div class="col-7 m-4" style="height: 300px; border-radius: 5px;">
+        <div class="col-7 m-4" style="height: 380px; border-radius: 5px;">
           <div class="card mx-auto" style="width: 94%; height: 100%; border: solid 1px #84D479;">
             <div class="card-img-top" style="background-color: #84D479; padding: 5px;"><h6>{% trans "My user" %}</h6></div>
             <div class="card-body">
-              Nombre de usuario: {{user}}
+              <p>Usuario: {{user}} </p>
+              <p>Correo electrónico: {{ user.email }}</p>
+              <p>Número de Tipos de colecciones gestionadas: {{collection_type.count}} </p>
             </div>
           </div>
         </div>
-        <div class="col m-4" style="height: 300px; border-radius: 5px;">
+        <div class="col m-4" style="height: 380px; border-radius: 5px;">
           <div class="card mx-auto" style="width: 94%; height: 100%; border: solid 1px var(--teal);">
             <div class="card-img-top" style="background-color: var(--teal); padding: 5px;"><h6>{% trans "Actions" %}</h6></div>
             <div class="card-body">
                 <br/>
                 <button type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 90px;">{% trans "Create collection" %}</button>
                 <button type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 90px;">{% trans "Asociate administrator to collection" %}</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 90px;">{% trans "Send email to administrators" %}</button>
             </div>
           </div>
         </div>
@@ -37,7 +40,10 @@
             <div class="card-img-top" style="background-color: #eeeeee; padding: 10px;">Tipos de colecciones que administro</div>
             <div class="card-body">
               <p class="card-text">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                Un <i>Tipo de colección</i> es un agrupamiento de colecciones que describe la configuración y el
+                comportamiento de las colecciones bajo su manto. 
+                El <i>Tipo de colección</i> especifica que tipo de sitios, dispositivos, eventos de muestreo, archivos,
+                licencias y roles pueden ser usadas en colecciones de dicho tipo.
               </p>
 
               <table class="table table-bordered">
@@ -47,8 +53,10 @@
                       <th scope="col">Tipo de colección</th>
                       <th scope="col">Nº de colecciones</th>
                       <th scope="col">Nº de usuarios</th>
-                      <th scope="col">Descripción</th>
-                      <th cope="col">Acciones</th>
+                      <th scope="col">Nº de items</th>
+                      <th cope="col">Último item subido</th>
+                      <th scope="col">Nº de anotaciones</th>
+                      <th cope="col">Última anotación</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -56,10 +64,12 @@
                     <tr>
                       <th scope="row">{{ forloop.counter }}</th>
                       <td>{{ct.name}}</td>
-                      <td>1</td>
+                      <td>{{ct.collections.count}}</td>
                       <td>{{ct.users.count}}</td>
-                      <td>{{ct.description}}</td>
-                      <td class="text-center"><a href="#" class="btn btn-link">{% trans "See" %}</a></td>
+                      <td>{{ct.items.count}}</td>
+                      <td>{{ct.last_item.created_on}}</td>
+                      <td>{{ct.annotations.count}}</td>
+                      <td>{{ct.last_annotation.created_on}}</td>
                     </tr>
                     {% endfor %}
                   </tbody>
