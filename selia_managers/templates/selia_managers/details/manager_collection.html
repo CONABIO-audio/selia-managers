@@ -1,0 +1,93 @@
+{% load i18n %}
+{% load selia_filters %}
+{% load selia_tags %}
+{% load selia_tags %}
+{% load static %}
+
+
+{% detailtitle %}
+
+{% enddetailimage %}
+{% trans 'Collection manager'%}
+{% enddetailheader %}
+
+{% enddetailtitle %}
+
+{% detailsection %}
+{% trans 'Collection info' %}
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Name' %}
+    {% endhead %}
+      {{ object.name }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Institution' %}
+    {% endhead %}
+      {{ object.user.institution }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Description' %}
+    {% endhead %}
+      {{ object.description }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+{% detailsection %}
+  {% trans 'Administrators' %}
+{% enddetailsection %}
+
+{% for admin in object.all_admin %}
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Name' %}
+    {% endhead %}
+      {{ admin.first_name }} {{ admin.last_name }}
+    {% enddetailitem %}
+  </div>
+
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Email' %}
+    {% endhead %}
+      {{ admin.email }}
+    {% enddetailitem %}
+  </div>
+</div>
+{% endfor %}
+
+{% if object.metadata %}
+  {% detailsection %}
+    {% trans 'Metadata' %}
+  {% enddetailsection %}
+
+  <div class="row">
+    {% show_json object.metadata %}
+  </div>
+{% endif %}
+
+{% detailsection %}
+  {% trans 'Statistics' %}
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Users' %}
+    {% endhead %}
+      {{ object.users.count }}
+    {% enddetailitem %}
+  </div>
+</div>

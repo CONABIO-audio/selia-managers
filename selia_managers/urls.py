@@ -10,6 +10,10 @@ urlpatterns = [
         views.listManagerCollectionsView.as_view(),
         name='collections'),
     path(
+        'collections/detail/<pk>/',
+        views.DetailCollectionView.as_view(),
+        name='collection_detail'),
+    path(
         'collection/create/2/',
         views.listManagerCollectionsView.as_view(),
         name='create_collection'),

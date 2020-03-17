@@ -11,6 +11,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'), ]
 
+LOGIN_REDIRECT_URL = '/managers'
+LOGOUT_REDIRECT_URL = '/managers'
 
 INSTALLED_APPS = (
     SELIA_MANAGERS_APPS +
@@ -20,5 +22,3 @@ INSTALLED_APPS = (
     SELIA_REGISTRATION_APPS +
     IREKUA_REST_API_APPS
 )
-#INSTALLED_APPS.append('crispy_forms')
-#CRISPY_TEMPLATE_PACK = 'bootstrap4'

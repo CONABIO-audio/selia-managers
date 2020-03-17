@@ -1,0 +1,36 @@
+{% extends 'selia_managers/detail/base.html' %}
+
+{% load i18n %}
+{% load selia_tags %}
+{% load selia_buttons %}
+
+{% block secondary-navbar %}
+  {% include 'selia_managers/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}{% trans 'Collection Manager' %}: {{ object }}{% endblock %}
+
+{% block toolbar-items %}
+<li class="nav-item">
+  <a class="nav-link" href="#">{% trans 'Download summary' %} <i class="fas fa-download"></i></a>
+</li>
+<li class="nav-item">
+  {% help_button %}
+</li>
+{% endblock toolbar-items %}
+
+
+{% block main-content %}
+<div class="container-fluid w-100">
+  <div class="row bg-light my-4">
+    <div class="container">
+      {% detail_component detail_template=detail_template object=object %}
+    </div>
+  </div>
+  <div class="row bg-light my-4">
+    <div class="container">
+      {% summary_component summary_template=summary_template object=object %}
+    </div>
+  </div>
+</div>
+{% endblock main-content %}

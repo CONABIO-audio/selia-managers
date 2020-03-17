@@ -20,11 +20,11 @@
       <p class="mb-2 d-block text-overflow" style="max-height: 300px;">
         {{ item.description }}
       </p>
-      {% comment %}<p>
-        <a href="{% url 'selia_managers:collection_detail' item.name %}">
+      <p>
+        <a href="{% url 'selia_managers:collection_detail' item.id %}">
           {% enter_button %}
         </a>
-      </p> {% endcomment %}
+      </p>
     {% endlisttitle %}
   </div>
 
@@ -49,47 +49,20 @@
       <div class="row">
 
         {% listsummary %}
+          {% trans 'Administrators' %}
+        {% summarycount %}
+          {{ item.administrators.count }}
+        {% endlistsummary %}
+
+      </div>
+      <div class="row">
+
+        {% listsummary %}
           {% trans 'Users' %}
         {% summarycount %}
           {{ item.users.count }}
         {% endlistsummary %}
 
-      </div>
-      <div class="row">
-        {% listsummary %}
-          {% trans 'Sites' %}
-        {% summarycount %}
-          {{ item.sites.count }}
-        {% summarybuttons %}
-        {% comment %}<a href="{% url 'selia_managers:create_collection_site' %}?collection={{ item.name }}">
-            {% add_button %}
-          </a>
-          <a class="ml-2" href="{% url 'selia_managers:collection_sites' item.name %}">
-            {% see_button %}
-          </a>{% endcomment %}
-        {% endlistsummary %}
-      </div>
-      <div class="row">
-        {% listsummary %}
-          {% trans 'Sampling Events' %}
-        {% summarycount %}
-          {{ item.samplingevent_set.count }}
-        {% summarybuttons %}
-        {% comment %}<a href="{% url 'selia_managers:create_sampling_event' %}?collection={{ item.name }}">{% add_button %}</a>
-        <a class="ml-2" href="{% url 'selia_managers:collection_sampling_events' item.name %}">{% see_button %}</a>
-        {% endcomment %}
-        {% endlistsummary %}
-      </div>
-      <div class="row">
-        {% listsummary %}
-          {% trans 'Devices' %}
-        {% summarycount %}
-          {{ item.collectiondevice_set.count }}
-        {% summarybuttons %}
-        {% comment %}<a href="{% url 'selia_managers:create_collection_device' %}?collection={{ item.name }}">{% add_button %}</a>
-          <a class="ml-2" href="{% url 'selia_managers:collection_devices' item.name %}">{% see_button %}</a>
-          {% endcomment %}
-        {% endlistsummary %}
       </div>
       <div class="row">
         {% listsummary %}
@@ -100,6 +73,30 @@
         {% comment %}<a href="{% url 'selia_managers:create_item' %}?collection={{ item.name }}">{% add_button %}</a>
           <a class="ml-2" href="{% url 'selia_managers:collection_items' item.name %}">{% see_button %}</a>
           {% endcomment %}
+        {% endlistsummary %}
+      </div>
+      <div class="row">
+        {% listsummary %}
+          {% trans 'Last item' %}
+        {% summarycount %}
+          {{ item.last_item.created_on }}
+        {% summarybuttons %}
+        {% endlistsummary %}
+      </div>
+      <div class="row">
+        {% listsummary %}
+          {% trans 'Annotations' %}
+        {% summarycount %}
+          {{ item.annotations.count }}
+        {% summarybuttons %}
+        {% endlistsummary %}
+      </div>
+      <div class="row">
+        {% listsummary %}
+          {% trans 'Last annotation' %}
+        {% summarycount %}
+          {{ item.last_annotation.created_on }}
+        {% summarybuttons %}
         {% endlistsummary %}
       </div>
     </div>

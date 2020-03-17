@@ -22,11 +22,11 @@ def collections(request):
 
 
 class listManagerCollectionsView(SeliaListView):
-  template_name = 'selia_managers/list/user_collections.html'
+  template_name = 'selia_managers/list/manager_collections.html'
 
-  list_item_template = 'selia_managers/list_items/collection.html'
-  help_template = 'selia_managers/help/user_collections.html'
-  filter_form_template = 'selia_managers/filters/collection.html'
+  list_item_template = 'selia_managers/list_items/manager_collection.html'
+  help_template = 'selia_managers/help/manager_collections.html'
+  filter_form_template = 'selia_managers/filters/manager_collections.html'
 
   filter_class = data_collections.Filter
   search_fields = data_collections.search_fields
