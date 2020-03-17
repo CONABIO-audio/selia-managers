@@ -2,7 +2,7 @@ from django.db.models import Q
 from irekua_database.models import Collection
 
 from selia_managers.views.list_views.base import SeliaListView
-from irekua_filters.managers import manager_collections
+from irekua_filters.manager_collections import manager_collections
 
 
 class ListUserCollectionsView(SeliaListView):

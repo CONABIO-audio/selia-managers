@@ -8,6 +8,9 @@
 
 {% block toolbar-items %}
   <li class="nav-item">
+    <a class="nav-link" href="{% url 'selia_managers:create_collection' %}">{% trans 'Add collection' %} <i class="fas fa-plus"></i></a>
+  </li>
+  <li class="nav-item">
     {% help_button %}
   </li>
 {% endblock toolbar-items %}

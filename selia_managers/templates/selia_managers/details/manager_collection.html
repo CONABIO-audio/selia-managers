@@ -66,17 +66,17 @@
     {% enddetailitem %}
   </div>
 </div>
+{% empty %}
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'No administrators in this collection' %}
+    {% endhead %}
+    {% enddetailitem %}
+  </div>
+</div>
 {% endfor %}
 
-{% if object.metadata %}
-  {% detailsection %}
-    {% trans 'Metadata' %}
-  {% enddetailsection %}
-
-  <div class="row">
-    {% show_json object.metadata %}
-  </div>
-{% endif %}
 
 {% detailsection %}
   {% trans 'Statistics' %}
@@ -88,6 +88,47 @@
       {% trans 'Users' %}
     {% endhead %}
       {{ object.users.count }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Most active collection user' %}
+    {% endhead %}
+      
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Items' %}
+    {% endhead %}
+      {{ statistics.items }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Last item' %}
+    {% endhead %}
+      {{ statistics.last_item.created_on }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Annotations' %}
+    {% endhead %}
+      {{ statistics.annotations }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Last annotation' %}
+    {% endhead %}
+      {{ statistics.last_annotation.created_on }}
     {% enddetailitem %}
   </div>
 </div>

@@ -1,1 +1,1 @@
-#from .list_component import SeliaList
+from .list_component import SeliaList

@@ -5,12 +5,6 @@
 
 {% block list-item-content %}
 <div class="col w-100">
-  {% if item.items.last %}
-  <div class="row" style="height: 300px">
-    <img style="height: 300px; width: 100%; object-fit: contain;" class="mx-auto" src="{% url 'selia_thumbnails:thumbnails' %}?pk={{ item.items.last }}&height=x300&crop=center">
-  </div>
-  {% endif %}
-
   <div class="row">
     {% listtitle %}
       {% list_icon item.logo size="7em" %}
@@ -96,6 +90,14 @@
           {% trans 'Last annotation' %}
         {% summarycount %}
           {{ item.last_annotation.created_on }}
+        {% summarybuttons %}
+        {% endlistsummary %}
+      </div>
+      <div class="row">
+        {% listsummary %}
+          {% trans 'Annotations percentage' %}
+        {% summarycount %}
+
         {% summarybuttons %}
         {% endlistsummary %}
       </div>

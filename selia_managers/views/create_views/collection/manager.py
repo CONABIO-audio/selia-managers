@@ -1,0 +1,14 @@
+from selia_managers.views.create_views.manager_base import CreateManagerBase
+
+
+class CreateCollectionManager(CreateManagerBase):
+    manager_name = 'selia_managers:create_collection'
+
+    def view_from_request(self):
+        if 'collection_type' not in self.request.GET:
+            return 'selia_managers:create_collection_select_collection_type'
+
+        # if 'user' not in self.request.GET:
+        #    return 'selia_managers:create_collection_select_user'
+    
+        return 'selia_managers:create_collection_create_form'

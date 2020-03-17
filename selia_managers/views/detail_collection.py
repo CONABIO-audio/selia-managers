@@ -33,9 +33,7 @@ class DetailCollectionView(SeliaDetailView, SingleObjectMixin):
 
     help_template = 'selia_managers/help/manager_collection_detail.html'
     detail_template = 'selia_managers/details/manager_collection.html'
-    summary_template = 'selia_managers/summaries/manager_collection.html'
     update_form_template = 'selia_managers/update/manager_collection.html'
-    viewer_template = 'selia_managers/viewers/manager_collection.html'
 
     '''def has_view_permission(self):
         user = self.request.user
@@ -60,46 +58,40 @@ class DetailCollectionView(SeliaDetailView, SingleObjectMixin):
         permissions['list_collection_licences'] = licence_permissions.list(
             user, collection=self.object)
         return permissions
-
-    def get_summary_info(self):
-        user = self.request.user
+    '''
+    def get_statistics(self):
         collection = self.object
 
-        sampling_events = (
-            SamplingEvent.objects
-            .filter(collection=collection, created_by=user)
-            .count())
-        collection_sites = (
-            CollectionSite.objects
-            .filter(collection=collection, created_by=user)
-            .count())
-        collection_devices = (
-            CollectionDevice.objects
-            .filter(collection=collection, created_by=user)
-            .count())
         items = (
             Item.objects
             .filter(
-                sampling_event_device__sampling_event__collection=collection,
-                created_by=user)
+                sampling_event_device__sampling_event__collection=collection)
             .count())
+        last_item = (
+            Item.objects
+            .filter(
+                sampling_event_device__sampling_event__collection=collection)
+            .order_by('-created_on').first())
         annotations = (
             Annotation.objects
             .filter(
-                item__sampling_event_device__sampling_event__collection=collection,
-                created_by=user)
-            .count())
+                item__sampling_event_device__sampling_event__collection=collection
+            ).count())
+        last_annotation = (
+            Annotation.objects
+            .filter(
+                item__sampling_event_device__sampling_event__collection=collection
+            ).order_by('-created_on').first())
 
         return {
-            'sampling_events': sampling_events,
-            'collection_sites': collection_sites,
-            'collection_devices': collection_devices,
             'items': items,
+            'last_item': last_item,
             'annotations': annotations,
+            'last_annotation': last_annotation
         }
-'''
+
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['collection'] = self.object
-        # context['summary_info'] = self.get_summary_info()
+        context['statistics'] = self.get_statistics()
         return context

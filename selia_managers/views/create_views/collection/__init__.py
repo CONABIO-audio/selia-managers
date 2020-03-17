@@ -1,0 +1,5 @@
+from .manager import CreateCollectionManager
+from .create_collection import CreateCollectionView
+from .select_role import SelectCollectionRoleView
+from .select_user import SelectCollectionUserView
+from .select_collection_type import SelectCollectionCollectionView

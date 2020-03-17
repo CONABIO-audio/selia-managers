@@ -12,8 +12,8 @@
 
 {% block navbar-items %}
 {% if user.is_authenticated %}
-{% url 'selia_managers:collections' as user_url %}
-{% tab user_url %}
+{% url 'selia_managers:collections' as collection_url %}
+{% tab collection_url %}
   <i class="fas fa-archive"></i>
   {% trans 'My Collections' %}
 {% endtab %}

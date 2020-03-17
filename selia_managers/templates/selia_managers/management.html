@@ -27,7 +27,8 @@
             <div class="card-img-top" style="background-color: var(--teal); padding: 5px;"><h6>{% trans "Actions" %}</h6></div>
             <div class="card-body">
                 <br/>
-                <button type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 90px;">{% trans "Create collection" %}</button>
+  
+                <a class="btn btn-primary btn-lg btn-block" href="{% url 'selia_managers:create_collection' %}">{% trans 'Add collection' %} <i class="fas fa-plus"></i></a>
                 <button type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 90px;">{% trans "Asociate administrator to collection" %}</button>
                 <button type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 90px;">{% trans "Send email to administrators" %}</button>
             </div>
