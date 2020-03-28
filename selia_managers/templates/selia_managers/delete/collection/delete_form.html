@@ -4,7 +4,7 @@
 {% load selia_filters %}
 
 {% block toolbar-title %}
-  {% trans 'Add collection to collection type' %}
+  {% trans 'Remove collection' %}
 {% endblock toolbar-title %}
 
 {% comment %}
@@ -15,12 +15,12 @@
 
 {% block toolbar-steps %}
 <li>
-  <a href="{% url 'selia_managers:create_collection'%}?{{ request.GET | remove_fields:'collection_type'}}">
+  <a href="{% url 'selia_managers:delete_collection'%}?{{ request.GET | remove_fields:'collection_type'}}">
     {% trans 'Select collection type' %}
   </a>
 </li>
 <li class="is-active">{% trans 'Fill in details' %}</li>
-<li>{% trans 'Add administrator' %}</li>
+<li>{% trans 'Remove administrator' %}</li>
 {% endblock %}
 
 {% block step-title %}

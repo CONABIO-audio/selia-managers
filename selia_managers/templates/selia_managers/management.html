@@ -29,7 +29,7 @@
                 <br/>
   
                 <a class="btn btn-primary btn-lg btn-block" href="{% url 'selia_managers:create_collection' %}">{% trans 'Add collection' %} <i class="fas fa-plus"></i></a>
-                <button type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 90px;">{% trans "Asociate administrator to collection" %}</button>
+                <a class="btn btn-primary btn-lg btn-block" href="{% url 'selia_managers:create_administrator' %}">{% trans 'Asociate administrator to collection' %}</a>
                 <button type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 90px;">{% trans "Send email to administrators" %}</button>
             </div>
           </div>

@@ -16,8 +16,8 @@ class SelectUserForm(forms.Form):
         label=_('User email'))
 
 
-class SelectCollectionUserView(SeliaCreateView):
-    template_name = 'selia_managers/create/collection/select_user.html'
+class SelectUserAdministratorView(SeliaCreateView):
+    template_name = 'selia_managers/create/administrator/select_user.html'
     prefix = 'user'
     form_class = SelectUserForm
 
@@ -49,7 +49,7 @@ class SelectCollectionUserView(SeliaCreateView):
             raise forms.ValidationError({'email': msg})
 
     def redirect_on_success(self):
-        url = reverse('selia_managers:create_collection')
+        url = reverse('selia_managers:create_administrator')
         query = self.request.GET.copy()
         query['user'] = self.object.pk
 
