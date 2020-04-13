@@ -8,7 +8,7 @@ from selia_managers.forms.json_field import JsonField
 
 
 class CreateCollectionForm(forms.ModelForm):
-    metadata = JsonField()
+    # metadata = JsonField()
 
     class Meta:
         model = Collection
@@ -17,6 +17,7 @@ class CreateCollectionForm(forms.ModelForm):
             'name',
             'description',
             'metadata',
+            'logo',
             'is_open'
         ]
 

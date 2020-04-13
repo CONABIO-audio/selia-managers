@@ -8,7 +8,7 @@
 {% detailtitle %}
 
 {% enddetailimage %}
-{% trans 'Collection manager'%}
+{% trans 'Collection detail'%}
 {% enddetailheader %}
 
 {% enddetailtitle %}
@@ -43,6 +43,18 @@
     {% enddetailitem %}
   </div>
 </div>
+
+
+{% if object.metadata %}
+  {% detailsection %}
+    {% trans 'Metadata' %}
+  {% enddetailsection %}
+
+  <div class="row">
+    {% show_json object.metadata %}
+  </div>
+{% endif %}
+
 
 {% detailsection %}
   {% trans 'Administrators' %}

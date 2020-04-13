@@ -1,5 +1,6 @@
 from django.views.generic.detail import SingleObjectMixin
 from django import forms
+from dal import autocomplete
 
 from irekua_database.models import Collection
 from irekua_database.models import SamplingEvent
@@ -20,7 +21,10 @@ class CollectionUpdateForm(forms.ModelForm):
     class Meta:
         model = Collection
         fields = [
+            'name',
+            'description',
             'metadata',
+            'logo'
         ]
 
 
@@ -89,6 +93,13 @@ class DetailCollectionView(SeliaDetailView, SingleObjectMixin):
             'annotations': annotations,
             'last_annotation': last_annotation
         }
+
+
+    def get_form(self, **kwargs):
+        form = super().get_form(**kwargs)
+        schema = self.object.collection_type.metadata_schema
+        form.fields['metadata'].update_schema(schema)
+        return form
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

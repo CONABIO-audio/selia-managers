@@ -2,8 +2,17 @@
 {% load crispy_forms_tags %}
 {% load i18n %}
 
+
+{% load selia_filters %}
+{% load selia_tags %}
+{% load selia_tags %}
+{% load static %}
+
 {% block toolbar-items %}
 <li class="navbar-item ">
+  <a class="btn btn-link" href="{% url 'selia_managers:create_collection' %}"><i class="fas fa-plus"></i> {% trans 'Add collection' %}</a>
+  <a class="btn btn-link" href="{% url 'selia_managers:create_administrator' %}"><i class="fas fa-user-plus"></i> {% trans 'Asociate administrator' %}</a>
+  <a class="btn btn-link" href="{% url 'selia_managers:create_administrator' %}"><i class="fas fa-paper-plane"></i> {% trans 'Send email' %}</a>
   <button type="button" class="btn btn-link" data-toggle="modal" data-target="#helpModal"><i class="fas fa-question"></i> {% trans "Help" %}</button>
 </li>
 {% endblock toolbar-items %}
@@ -11,30 +20,52 @@
 {% block main-content %}
   <div class="mx-auto container-fluid" style="width: 96%; overflow: auto; background-color: white; display: block; position: relative; margin: 1.2rem;">
     <div class="container-">
+
+
       <div class="row">
-        <div class="col-7 m-4" style="height: 380px; border-radius: 5px;">
-          <div class="card mx-auto" style="width: 94%; height: 100%; border: solid 1px #84D479;">
-            <div class="card-img-top" style="background-color: #84D479; padding: 5px;"><h6>{% trans "My user" %}</h6></div>
-            <div class="card-body">
-              <p>Usuario: {{user}} </p>
-              <p>Correo electrónico: {{ user.email }}</p>
-              <p>Número de Tipos de colecciones gestionadas: {{collection_type.count}} </p>
+        
+        <div class="col-12 m-4" style="height: 380px; border-radius: 5px;">
+          <div class="card- mx-auto-" style="width: 90%; ">
+            {% detailtitle %}
+              {% enddetailimage %}
+              {% trans 'My user'%}
+            {% enddetailheader %}
+            {% enddetailtitle %}
+
+            {% detailsection %}
+              {% trans 'Information' %}
+            {% enddetailsection %}
+
+            <div class="row">
+              <div class="col">
+                {% detailitem %}
+                  {% trans 'Username' %}
+                {% endhead %}
+                  {{user.email}}
+                {% enddetailitem %}
+              </div>
+              <div class="col">
+                {% detailitem %}
+                  {% trans 'Email' %}
+                {% endhead %}
+                  {{user.email}}
+                {% enddetailitem %}
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="col m-4" style="height: 380px; border-radius: 5px;">
-          <div class="card mx-auto" style="width: 94%; height: 100%; border: solid 1px var(--teal);">
-            <div class="card-img-top" style="background-color: var(--teal); padding: 5px;"><h6>{% trans "Actions" %}</h6></div>
-            <div class="card-body">
-                <br/>
-  
-                <a class="btn btn-primary btn-lg btn-block" href="{% url 'selia_managers:create_collection' %}">{% trans 'Add collection' %} <i class="fas fa-plus"></i></a>
-                <a class="btn btn-primary btn-lg btn-block" href="{% url 'selia_managers:create_administrator' %}">{% trans 'Asociate administrator to collection' %}</a>
-                <button type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 90px;">{% trans "Send email to administrators" %}</button>
+
+            <div class="row">
+              <div class="col">
+                {% detailitem %}
+                  {% trans 'Type collections managed' %}
+                {% endhead %}
+                {{collection_type.count}}
+                {% enddetailitem %}
+              </div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class="col-12 m-2">
           <div class="card mx-auto" style="width: 94%;">
@@ -81,4 +112,4 @@
       </div>
     </div>
   </div>
-{% endblock main-content %}
+  {% endblock main-content %}

@@ -4,6 +4,7 @@ from irekua_dev_settings.settings import *
 from selia_templates.settings import *
 from selia_managers.settings import *
 from irekua_database.settings import *
+from irekua_autocomplete.settings import *
 from irekua_rest_api.settings import *
 from selia_registration.settings import *
 
@@ -20,5 +21,6 @@ INSTALLED_APPS = (
     IREKUA_BASE_APPS +
     IREKUA_DATABASE_APPS +
     SELIA_REGISTRATION_APPS +
+    IREKUA_AUTOCOMPLETE_APPS +
     IREKUA_REST_API_APPS
 )

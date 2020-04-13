@@ -79,6 +79,9 @@ class SeliaDetailView(UpdateView):
         if not self.has_delete_permission():
             return self.no_permission_redirect()
 
+        if not self.object.is_empty:
+            return self.protected_redirect()
+
         try:
             redirect_to = self.get_delete_redirect_url()
             redirect_url_args = self.get_delete_redirect_url_args()
