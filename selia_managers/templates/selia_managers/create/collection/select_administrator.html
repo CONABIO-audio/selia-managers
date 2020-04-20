@@ -52,7 +52,7 @@ Search for a user to add as administrator collection, or invite a user
         {% blocktrans %}
         No user with the given email was found. Do you wish to
         {% endblocktrans %}
-        <a href="{% url 'selia_registration:invite' %}?back={{ request.GET.urlencode }}">{% trans 'invite a new user' %}</a>?
+        {% comment %}<a href="{% url 'selia_managers:create_user' %}?{{ request.GET.urlencode }}">{% trans 'invite a new user' %}</a>? {% endcomment %}
       </h5>
     </div>
     {% endif %}

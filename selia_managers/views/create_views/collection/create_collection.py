@@ -8,7 +8,7 @@ from selia_managers.forms.json_field import JsonField
 
 
 class CreateCollectionForm(forms.ModelForm):
-    # metadata = JsonField()
+    metadata = JsonField()
 
     class Meta:
         model = Collection
@@ -46,3 +46,10 @@ class CreateCollectionView(SeliaCreateView):
         context['collection_type'] = self.collection_type
 
         return context
+
+    def get_form(self, **kwargs):
+        collection_type = CollectionType.objects.get(name=self.request.GET['collection_type'])
+        form = super().get_form(**kwargs)
+        schema = collection_type.metadata_schema
+        form.fields['metadata'].update_schema(schema)
+        return form

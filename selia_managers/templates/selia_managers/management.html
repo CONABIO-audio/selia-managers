@@ -12,7 +12,7 @@
 <li class="navbar-item ">
   <a class="btn btn-link" href="{% url 'selia_managers:create_collection' %}"><i class="fas fa-plus"></i> {% trans 'Add collection' %}</a>
   <a class="btn btn-link" href="{% url 'selia_managers:create_administrator' %}"><i class="fas fa-user-plus"></i> {% trans 'Asociate administrator' %}</a>
-  <a class="btn btn-link" href="{% url 'selia_managers:create_administrator' %}"><i class="fas fa-paper-plane"></i> {% trans 'Send email' %}</a>
+  <a class="btn btn-link" href="{% url 'selia_managers:create_email' %}"><i class="fas fa-paper-plane"></i> {% trans 'Send email' %}</a>
   <button type="button" class="btn btn-link" data-toggle="modal" data-target="#helpModal"><i class="fas fa-question"></i> {% trans "Help" %}</button>
 </li>
 {% endblock toolbar-items %}
