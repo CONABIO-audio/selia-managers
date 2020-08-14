@@ -22,7 +22,7 @@
   </a>
 </li>
 <li class="navbar-item ">
-  <a class="btn btn-link" href="{% url 'selia_managers:create_administrator' %}">
+  <a class="btn btn-link" href="{% url 'selia_managers:create_administrator' %}?collection={{ object.id }}">
     {% add_button %}{% trans 'Admin' %}
   </a>
 </li>
