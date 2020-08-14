@@ -39,16 +39,15 @@ class SelectCollectionAdministratorView(SeliaSelectView):
     def get_list_class(self):
         user = self.request.user
 
-        if user.is_special:
-            queryset = Collection.objects.all()
-        else:
-            queryset = user.managed_collections.all()
-
         class CollectionList(SeliaList):
             filter_class = Filter
             search_fields = search_fields
             ordering_fields = ordering_fields
-            queryset = queryset
+
+            if user.is_special:
+                queryset = Collection.objects.all()
+            else:
+                queryset = user.managed_collections.all()
 
             list_item_template = 'selia_managers/select_list_items/collection.html'
             filter_form_template = 'selia_managers/filters/collection.html'
