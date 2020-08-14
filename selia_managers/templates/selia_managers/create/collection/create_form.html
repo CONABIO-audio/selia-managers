@@ -2,18 +2,20 @@
 {% load i18n %}
 {% load selia_tags %}
 {% load selia_filters %}
-
 {% load selia_forms %}
 
 {% block toolbar-title %}
-  {% trans 'Add collection to collection type' %}
+  {% trans 'Create a collection' %}
 {% endblock toolbar-title %}
 
-{% comment %}
 {% block secondary-navbar %}
-  {% include 'selia_managers/navbars/collection.html' %}
+  {% include 'selia_managers/navbars/home.html' %}
 {% endblock secondary-navbar %}
-{% endcomment %}
+
+{% block head-extra %}
+  {{ block.super }}
+  {{ form.media }}
+{% endblock %}
 
 {% block toolbar-steps %}
 <li>
@@ -22,7 +24,6 @@
   </a>
 </li>
 <li class="is-active">{% trans 'Fill in details' %}</li>
-<li>{% trans 'Add administrator' %}</li>
 {% endblock %}
 
 {% block step-title %}
@@ -31,26 +32,35 @@
 
 {% block previously-selected %}
   {% trans 'Selected type collection' as label %}
-  {% comment %}
-  {% selected_item 'collection_type' collection_type label %}
-  {% endcomment %}
+  {% selected_item 'collection_type' collection_type label app='selia_managers' %}
 {% endblock previously-selected %}
 
 {% block form-content %}
-  <input type="hidden" id="collection_type_field" name="collection_type" value="{{ collection_type.pk }}">
+<input type="hidden" id="collection_type_field" name="collection_type" value="{{ collection_type.pk }}">
 
-
-  <div class="row d-flex justify-content-center text-center w-100">
+<div class="row px-4">
+  <div class="col">
     {% bootstrap_form form.name %}
-    {% bootstrap_form form.description %}
-    {% bootstrap_form form.metadata %}
-    {% bootstrap_form form.logo %}
-    {% bootstrap_form form.is_open %}
-
-  {% comment %}
-  <div class="row p-4">
-    <h4 class="w-100 text-center">{% trans 'No additional information required' %}</h4>
   </div>
-  {% endcomment %}
+  <div class="col">
+    {% bootstrap_form form.logo %}
+  </div>
+</div>
 
+<div class="row px-4">
+  <div class="col">
+    {% bootstrap_form form.description %}
+  </div>
+</div>
+
+<div class="row px-4 d-flex justify-content-center">
+  <div class="col">
+    <div class="row">
+      <h4 class="w-100 text-center">{% trans 'Metadata' %}</h4>
+    </div>
+    <div class="row px-5">
+      {{ form.metadata }}
+    </div>
+  </div>
+</div>
 {% endblock %}

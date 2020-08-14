@@ -1,5 +1,0 @@
-from .manager import CreateAdministratorManager
-from .delete_administrator import CreateAdministratorView
-from .delete_administrator import SaveAdministrator
-from .select_user import SelectUserAdministratorView
-from .select_collection import SelectCollectionAdministratorView

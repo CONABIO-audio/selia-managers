@@ -1,5 +1,4 @@
 from .manager import CreateAdministratorManager
-from .create_administrator import CreateAdministratorView
-from .create_administrator import SaveAdministrator
-from .select_user import SelectUserAdministratorView
 from .select_collection import SelectCollectionAdministratorView
+from .select_user import SelectUserAdministratorView
+from .create_administrator import create_administrator_view

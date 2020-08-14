@@ -5,7 +5,7 @@
 {% load selia_forms %}
 
 {% block secondary-navbar %}
-  {% include 'selia_managers/navbars/user.html' %}
+  {% include 'selia_managers/navbars/home.html' %}
 {% endblock %}
 
 {% block toolbar-title %}
@@ -35,9 +35,9 @@
 
 {% block step-description %}
 {% blocktrans %}
-Search for a user to add as administrator collection, or invite a user
+Search for a user to add as administrator collection, or
 {% endblocktrans %}
-{% comment %}<a href="{% url 'selia_managers:create_user' %}?{{ request.GET.urlencode }}">{% trans 'invite a user to selia' %}.</a> {% endcomment %}
+<a href="{% url 'invite' %}?next={% url 'selia_managers:create_administrator' %}?{{ request.GET.urlencode }}">{% trans 'invite a user to selia' %}.</a>
 {% endblock %}
 
 {% block form-content %}
@@ -46,13 +46,23 @@ Search for a user to add as administrator collection, or invite a user
     <div class="row">
       {% bootstrap_form form.email %}
     </div>
+    <div class="row">
+      <p>
+        {% trans 'Or' %}
+        <a href="{% url 'invite' %}?next=next={% url 'selia_managers:create_administrator' %}?{{ request.GET.urlencode }}">
+          {% trans 'invite a new user' %}
+        </a>
+      </p>
+    </div>
     {% if form.email.errors %}
     <div class="row p-4">
       <h5 class="w-100 text-center">
         {% blocktrans %}
         No user with the given email was found. Do you wish to
         {% endblocktrans %}
-        <a href="{% url 'selia_registration:invite' %}?back={{ request.GET.urlencode }}">{% trans 'invite a new user' %}</a>?
+        <a href="{% url 'invite' %}?next={% url 'selia_managers:create_administrator' %}?{{ request.GET.urlencode }}">
+          {% trans 'invite a new user' %}?
+        </a>
       </h5>
     </div>
     {% endif %}

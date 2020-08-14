@@ -1,10 +1,11 @@
 from django import forms
 
-from selia_managers.views.create_views.create_base import SeliaCreateView
 from irekua_database.models import CollectionType
 from irekua_database.models import Collection
-
-from selia_managers.forms.json_field import JsonField
+from irekua_permissions.object_types.data_collections import (
+    collection_types as permissions)
+from selia_templates.views.create_base import SeliaCreateView
+from selia_templates.forms.json_field import JsonField
 
 
 class CreateCollectionForm(forms.ModelForm):
@@ -24,32 +25,39 @@ class CreateCollectionForm(forms.ModelForm):
 
 class CreateCollectionView(SeliaCreateView):
     template_name = 'selia_managers/create/collection/create_form.html'
-    success_url = 'selia_managers:collections'
+    success_url = 'selia_managers:collection_detail'
 
     model = Collection
     form_class = CreateCollectionForm
 
+    def has_view_permission(self):
+        return permissions.create(self.request.user)
+
     def get_initial(self, *args, **kwargs):
+        return {
+            'collection_type': self.collection_type,
+            'is_open': False,
+            **super().get_initial(*args, **kwargs)
+        }
+
+    def get_success_url_args(self):
+        return [self.object.pk]
+
+    def get_context_data(self, *args, **kwargs):
         self.collection_type = CollectionType.objects.get(
             name=self.request.GET['collection_type'])
 
         return {
-            'collection_type': self.collection_type
+            'collection_type': self.collection_type,
+            **super().get_context_data(*args, **kwargs)
         }
 
-    def get_success_url_args(self):
-        return [self.request.GET['collection_type']]
+    def get_form(self, *args, **kwargs):
+        if not hasattr(self, 'collection_type'):
+            self.collection_type = CollectionType.objects.get(
+                name=self.request.GET['collection_type'])
 
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-
-        context['collection_type'] = self.collection_type
-
-        return context
-
-    def get_form(self, **kwargs):
-        collection_type = CollectionType.objects.get(name=self.request.GET['collection_type'])
-        form = super().get_form(**kwargs)
-        schema = collection_type.metadata_schema
+        form = super().get_form(*args, **kwargs)
+        schema = self.collection_type.metadata_schema
         form.fields['metadata'].update_schema(schema)
         return form

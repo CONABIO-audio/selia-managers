@@ -1,4 +1,4 @@
-from selia_managers.views.create_views.manager_base import CreateManagerBase
+from selia_templates.views.manager_base import CreateManagerBase
 
 
 class CreateCollectionManager(CreateManagerBase):

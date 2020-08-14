@@ -3,21 +3,20 @@
 {% load selia_tags %}
 
 {% block toolbar-title %}
-  {% trans 'Add collection to collection type' %}
+  {% trans 'Create a collection' %}
 {% endblock toolbar-title %}
 
 {% block secondary-navbar %}
-  {% include 'selia_managers/navbars/user.html' %}
+  {% include 'selia_managers/navbars/home.html' %}
 {% endblock secondary-navbar %}
 
 {% block toolbar-steps %}
 <li class="is-active">{% trans 'Select collection type' %}</li>
 <li>{% trans 'Fill in details' %}</li>
-<li>{% trans 'Add administrator' %}</li>
 {% endblock %}
 
 {% block step-title %}
-  {% trans 'Select one of your collection types' %}
+  {% trans 'Select a collection types' %}
 {% endblock %}
 
 {% block step-description %}

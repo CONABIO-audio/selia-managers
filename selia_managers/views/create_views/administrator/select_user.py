@@ -5,10 +5,9 @@ from django.utils.translation import gettext as _
 
 from irekua_database.models import Collection
 from irekua_database.models import User
-
-from selia_managers.views.create_views.create_base import SeliaCreateView
 from irekua_permissions.data_collections import (
     users as user_permissions)
+from selia_templates.views import SeliaCreateView
 
 
 class SelectUserForm(forms.Form):

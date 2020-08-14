@@ -18,4 +18,9 @@
   {% trans 'About' %}
 {% endtab %}
 
+{% url 'selia_managers:collection_users' collection.id as users_url %}
+{% tab users_url %}
+  <i class="fas fa-user"></i>
+  {% trans 'Users' %}
+{% endtab %}
 {% endblock %}

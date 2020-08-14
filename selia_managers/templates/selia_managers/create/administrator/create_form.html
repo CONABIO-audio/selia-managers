@@ -34,34 +34,24 @@
 
 {% block previously-selected %}
   {% trans 'Selected collection' as label %}
-  {% comment %}
-  {% selected_item 'collection' collection label %}
-  {% endcomment %}
+  {% selected_item 'collection' collection label app='selia_managers' %}
 {% endblock previously-selected %}
 
 {% block form-content %}
-
-  <div class="row d-flex justify-content-center w-100">
-    <div class="col">
-      <div class="row">
-        <h4 class="w-100 text-center">{% trans 'Collection' %}</h4>
-      </div>
-      <div class="row px-5">
-        {{ collection.name }}
-      </div>
-      <div class="row">
-        <h4 class="w-100 text-center">{% trans 'administrator' %}</h4>
-      </div>
-      <div class="row px-5">
-       {{ user.email }}
-      </div>
+<div class="row d-flex justify-content-center w-100">
+  <div class="col">
+    <div class="row">
+      <h4 class="w-100 text-center">{% trans 'Administrator' %}</h4>
+    </div>
+    <div class="row px-5">
+     {{ user.email }}
     </div>
   </div>
-
+</div>
 {% endblock %}
 
 {% block submit-button %}
-  <div class="row justify-content-center">
-      <a class="btn btn-primary" href="{% url 'selia_managers:create_administrator_save' %}?collection={{collection.name|urlencode:''}}&user={{user.pk|urlencode:''}}">{% trans 'Add administrator' %}</a>
-  </div>
+<div class="row justify-content-center">
+  <a class="btn btn-primary" href="{% url 'selia_managers:create_administrator_save' %}?collection={{collection.name|urlencode:''}}&user={{user.pk|urlencode:''}}">{% trans 'Add administrator' %}</a>
+</div>
 {% endblock %}

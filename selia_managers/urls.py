@@ -1,19 +1,34 @@
 from django.urls import path
 from selia_managers import views
+from selia_managers.views import list_views
+from selia_managers.views import detail_views
+from selia_managers.views import delete_views
+
 from selia_managers.views.create_views import collection
 from selia_managers.views.create_views import administrator
-from selia_managers.views.create_views import email
 
 urlpatterns = [
-    path('', views.management, name='management'),
+    path('', views.CollectionManagementHome.as_view(), name='management'),
     path(
-        'collections',
-        views.listManagerCollectionsView.as_view(),
+        'collections/',
+        list_views.ManagedCollectionsListView.as_view(),
         name='collections'),
     path(
-        'collections/detail/<pk>/',
-        views.DetailCollectionView.as_view(),
+        'users/',
+        list_views.ManagedUsersListView.as_view(),
+        name='users'),
+    path(
+        'collections/<pk>/detail/',
+        detail_views.DetailCollectionView.as_view(),
         name='collection_detail'),
+    path(
+        'collections/<pk>/users/',
+        list_views.CollectionUsersListView.as_view(),
+        name='collection_users'),
+    path(
+        'collections/<pk>/administrators/delete/',
+        delete_views.delete_administrator,
+        name='remove_administrator'),
     path(
         'collection/create/',
         collection.CreateCollectionManager.as_view(),
@@ -26,10 +41,6 @@ urlpatterns = [
         'collection/create/2/',
         collection.CreateCollectionView.as_view(),
         name='create_collection_create_form'),
-    #path(
-    #    'collection/create/3/',
-    #    administrator.SelectUserAdministratorView.as_view(),
-    #    name='create_collection_select_administrator'),
     path(
         'administrator/create/',
         administrator.CreateAdministratorManager.as_view(),
@@ -44,30 +55,6 @@ urlpatterns = [
         name='create_administrator_select_user'),
     path(
         'administrator/create/3/',
-        administrator.CreateAdministratorView,
+        administrator.create_administrator_view,
         name='create_administrator_create_form'),
-    path(
-        'administrator/create/save/',
-        administrator.SaveAdministrator,
-        name='create_administrator_save'),
-    path(
-        'email/create/',
-        email.CreateEmailManager.as_view(),
-        name='create_email'),
-    path(
-        'email/create/1/',
-        email.SelectCollectionEmailView.as_view(),
-        name='create_email_select_collection'),
-    path(
-        'email/create/2/',
-        email.SelectUserEmailView.as_view(),
-        name='create_email_select_user'),
-    path(
-        'email/create/3/',
-        email.CreateEmailView,
-        name='create_email_create_form'),
-    path(
-        'email/create/save/',
-        email.SaveEmail,
-        name='create_email_save'),
 ]

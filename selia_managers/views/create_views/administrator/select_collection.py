@@ -1,11 +1,11 @@
-# from irekua_filters.data_collections import data_collections
-from irekua_database.models import CollectionType
-from selia_managers.views.utils import SeliaList
-from selia_managers.views.create_views import SeliaSelectView
-
 from django.utils.translation import gettext as _
 from django_filters import FilterSet
+
 from irekua_database.models import Collection
+from irekua_permissions.object_types.data_collections import (
+    collection_types as permissions)
+from selia_templates.views import SeliaList
+from selia_templates.views import SeliaSelectView
 
 
 class Filter(FilterSet):
@@ -32,6 +32,9 @@ class SelectCollectionAdministratorView(SeliaSelectView):
     template_name = 'selia_managers/create/administrator/select_collection.html'
     prefix = 'collection'
     create_url = 'selia_managers:create_administrator'
+
+    def has_view_permission(self):
+        return permissions.list(self.request.user)
 
     def get_list_class(self):
         class CollectionList(SeliaList):
