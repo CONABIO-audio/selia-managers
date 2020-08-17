@@ -24,7 +24,7 @@ class ManagedUsersListView(SeliaListView):
             queryset = User.objects.all()
         else:
             queryset = User.objects.filter(
-                collection__collection_type__administrators=user).distinct()
+                collection_users__collection_type__administrators=user).distinct()
 
         queryset = queryset.annotate(
             collection_users_count=Count('collection_users', distinct=True),
