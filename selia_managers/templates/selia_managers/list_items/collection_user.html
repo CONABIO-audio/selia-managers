@@ -74,11 +74,11 @@
       {% listattribute %}
       {% attributevalue %}
       {% if item.is_admin %}
-      <a class="btn btn-text text-danger">
+      <a class="btn btn-text text-danger" href="{% url 'selia_managers:remove_administrator' collection.id %}?administrator={{ item.id }}">
         {% remove_user_button %} {% trans 'Remove admin' %}
       </a>
       {% else %}
-      <a class="btn btn-text text-primary">
+      <a class="btn btn-text text-primary" href="{% url 'selia_managers:create_administrator' %}?collection={{ collection.name }}&user={{ item.id }}">
         {% add_user_button %} {% trans 'Make admin' %}
       </a>
       {% endif %}

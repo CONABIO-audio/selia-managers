@@ -48,7 +48,9 @@ class ManagedCollectionsListView(SeliaListView):
         if user.is_special:
             queryset = Collection.objects.all()
         else:
-            queryset = user.managed_collections.all()
+            queryset = Collection.objects.filter(
+                collection_type__administrators=user
+            )
 
         return queryset.annotate(
             user_count=Count('users', distinct=True),

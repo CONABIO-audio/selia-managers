@@ -13,7 +13,7 @@ def delete_administrator(request, pk=None):
     user = get_object_or_404(User, pk=request.GET.get('administrator', None))
     collection_type = collection.collection_type
 
-    if not permissions.change(request.user, collection_type=collection_type):
+    if not permissions.view(request.user, collection_type=collection_type):
         return render(request, 'selia_templates/generic/no_permission.html')
 
     collection.remove_administrator(user)

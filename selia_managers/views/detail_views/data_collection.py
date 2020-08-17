@@ -41,12 +41,12 @@ class DetailCollectionView(SeliaDetailView, SingleObjectMixin):
     def has_change_permission(self):
         user = self.request.user
         collection_type = self.object.collection_type
-        return permissions.change(user, collection_type=collection_type)
+        return permissions.view(user, collection_type=collection_type)
 
     def has_delete_permission(self):
         user = self.request.user
         collection_type = self.object.collection_type
-        return permissions.delete(user, collection_type=collection_type)
+        return permissions.view(user, collection_type=collection_type)
 
     def get_object(self, *args, **kwargs):
         return (
